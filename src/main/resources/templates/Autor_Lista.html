@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Mostrar Lista de Autores</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+        <link rel="stylesheet" href="/Estilos/autor.css">
+        <link rel="stylesheet" href="../static/Estilos/autor.css" type="text/css"/>
+        <!--Para los foquitos-->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    </head>
+    <body>
+
+        <div th:if="${exito}!=null" class="card text-white bg-success mb-3">
+            <div class="card-body">
+                <!--<h5 class="card-title">El Autor fué cargado de manera exitosa</h5>-->
+                <p class="card-text" th:text="${exito}"></p>
+            </div>
+        </div>
+
+        <div th:if="${error}!=null" class="card text-white bg-danger mb-3">
+            <div class="card-body">
+                <!--<h5 class="card-title">Error al cargar el Autor</h5>-->
+                <p class="card-text" th:text="${error}"></p>
+            </div>
+        </div>
+
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand disabled" th:href="@{/}" title="Inicio">Librería WEB</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/}" title="Inicio">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/autor/Autor_Menu}" title="Autores">Autores</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/editorial/Editorial_Menu}" title="Editoriales">Editoriales</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/libro/Libro_Menu}" title="Libros">Libros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" title="Préstamos">Préstamos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" title="Clientes">Clientes</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+
+
+        <br><br>
+        <h3 align="center">Página de Lista de Autores</h3>
+        <br><br>
+
+        <h4 align="center">Lista de Autores</h4>
+
+        <div class="container m-5">
+
+            <table class="table table-dark">
+
+                <thead>
+
+                    <tr>
+                        <th scope="col">ID</th>
+                        <!--<th scope="col">Apellido</th>-->
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Acciones</th>
+                    </tr>
+
+                </thead>
+
+                <tbody th:each="autor : ${autores}">
+
+                    <tr>
+                        <th scope="row" th:text="${autor.id}"></th>
+                        <!--<td th:text="${autor.apellido}"></td>-->
+                        <td th:text="${autor.nombre}"></td>
+                        <td>
+                            <i th:if="${autor.alta}" class="fa fa-circle text-success"></i>
+                            <i th:unless="${autor.alta}" class="fa fa-circle" style="color:red"></i>
+                        </td>
+                        <td>
+                            <a th:href="@{/autor/Autor_Modificar/__${autor.id}__}" class="btn btn-warning btn-sm" title="Modificar">Modificar</a>    
+                            <a th:href="@{/autor/Autor_Alta/__${autor.id}__}" class="btn btn-success btn-sm" title="Alta">Alta</a>
+                            <a th:href="@{/autor/Autor_Baja/__${autor.id}__}" class="btn btn-danger btn-sm" title="Baja">Baja</a>
+                            <a th:href="@{/autor/Autor_Eliminar/__${autor.id}__}" class="btn btn-outline-primary btn-sm" title="Eliminar">Eliminar</a> 
+                        </td>
+                    </tr>
+                </tbody>
+            </table>           
+        </div>    
+
+        <section class="py-5 text-center container">
+            <div class="row py-lg-5">
+                <div class="col-lg-6 col-md-8 mx-auto">
+                    <a th:href="@{/autor/Autor_Menu}" class="btn btn-primary my-2 btn-sm">Volver</a>
+
+                </div>
+            </div>
+        </section>
+
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+                integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
+        crossorigin="anonymous"></script>
+
+    </body>
+</html>

@@ -1,0 +1,137 @@
+
+div{
+    text-align: center;   
+}
+body{
+    /*color: white;*/
+    /*height: 400px;*/
+    background-color: darkgray;
+    /*background-image: url("../imagenes/autor.jpg");*/
+    background-size: cover;
+    background-repeat:no-repeat;
+}
+form{
+    width: 95%;
+    text-align: center;
+    padding-left: 30%;   
+    padding-right: 25%;
+}
+label{
+    font-weight: bold;
+}
+a{
+    text-align: center;
+}
+
+table {
+    width: 95%;
+    margin-left: 5%;
+    margin-right: 5%;
+    font-size: small;
+}
+
+footer {
+    bottom: 0px;
+    width: 98%;
+    position: fixed;
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+    font-size: x-small;
+    background-color: #191919;
+    text-align: center;
+    vertical-align: middle;
+    margin: 5px auto;
+    color: white;
+}
+
+/* CON ESTO CENTRO EL FOOTER FIXEADO */
+.centrar {
+    width: 98%;
+    margin: 0 auto;
+}
+
+.nav {
+
+}
+
+.nav-pills {
+
+}
+
+.navbar-dark {
+
+}
+
+.bg-dark {
+
+}
+
+.nav-item {
+
+}
+
+.btn {
+
+}
+
+.btn-outline-primary {
+
+}
+
+.container {
+
+}
+
+.m-5 {
+
+}
+
+.table {
+
+}
+
+.table-dark {
+
+}
+
+.btn-success {
+
+}
+
+.btn-danger {
+
+}
+
+.card {
+
+}
+
+.text-white {
+
+}
+
+.bg-success {
+
+}
+
+.mb-3 {
+
+}
+
+.fa {
+
+}
+
+.fa-circle {
+
+}
+
+.text-success {
+
+}
+
+.btn-sm {
+
+}

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+    <head>
+        <title>Cargar Libros</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+              integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+        <link rel="stylesheet" href="/Estilos/libro.css">
+        <link rel="stylesheet" href="../static/Estilos/libro.css" type="text/css"/>
+
+    </head>
+
+    <body>
+
+       <div th:if="${exito}!=null" class="card text-white bg-success mb-3">
+            <div class="card-body">
+                <!--<h5 class="card-title">El Autor fué cargado de manera exitosa</h5>-->
+                <p class="card-text" th:text="${exito}"></p>
+            </div>
+        </div>
+
+        <div th:if="${error}!=null" class="card text-white bg-danger mb-3">
+            <div class="card-body">
+                <!--<h5 class="card-title">Error al cargar el Autor</h5>-->
+                <p class="card-text" th:text="${error}"></p>
+                <p class="card-title">Verifique los datos ingresados</p>
+            </div>
+        </div>
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand disabled" th:href="@{/}" title="Inicio">Librería WEB</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/}" title="Inicio">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/autor/Autor_Menu}" title="Autores">Autores</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/editorial/Editorial_Menu}" title="Editoriales">Editoriales</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/libro/Libro_Menu}" title="Libros">Libros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" title="Préstamos">Préstamos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" title="Clientes">Clientes</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <br><br>
+        <h3 align="center">Página de Carga de Libros</h3>
+        <br><br>
+
+        <div>
+            <h4>Ingrese los siguientes datos del libro para poder registrarlo</h4>
+
+            <form th:action="@{/libro/Libro_Cargar}" method="POST">
+
+                <div class="form-group">
+                    <label>Título del Libro</label> <input type="text" class="form-control" name="titulo" placeholder="Título del Libro">
+                </div>
+                <div class="form-group">
+                    <label>Año de publicación del Libro</label> <input type="number" class="form-control" name="ano" placeholder="Año de publicación del Libro">
+                </div>
+                <div class="form-group">
+                    <label>Cantidad de Ejemplares del Libro</label> <input type="number" class="form-control" name="ejemplares" placeholder="Cantidad de Ejemplares del Libro">
+                </div>
+                
+                <div class="form-group">
+                    <label>Foto</label> <input type="file" class="form-control" name="foto" placeholder="Foto">
+                </div>
+
+                <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+                <br><br>
+                <div>
+                    <label>Selecione el Autor del Libro</label>
+                    <select class="form-control" name="idAutor">
+                        <option  selected disabled>Selecione el Autor del Libro</option>
+                        <!--<option th:text="${libro.autor.nombre}"></option>-->
+                        <option th:each="autor : ${autores}" th:value="${autor.id}" th:text="${autor.nombre}"></option>
+                    </select>
+                </div>
+                
+                <br><br>
+                <div>
+                    <label>Selecione la Editorial del Libro</label>
+                    <select class="form-control" name="idEditorial">
+                        <option  selected disabled>Selecione la Editorial del Libro</option>
+                        <!--<option th:text="${libro.autor.nombre}"></option>-->
+                        <option th:each="editorial : ${editoriales}" th:value="${editorial.id}" th:text="${editorial.nombre}"></option>
+                    </select>
+                </div>
+
+                <br><br>
+                <button type="submit" class="btn btn-primary btn-sm" title="Cargar Libro">Cargar Libro</button>
+            </form>
+        </div>
+
+        <section class="py-5 text-center container">
+            <div class="row py-lg-5">
+                <div class="col-lg-6 col-md-8 mx-auto">
+                    <a th:href="@{/libro/Libro_Menu}" class="btn btn-primary my-2 btn-sm ">Volver</a>
+                </div>
+            </div>
+        </section>
+
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+                integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
+        crossorigin="anonymous"></script>
+
+    </body>
+
+</html>
